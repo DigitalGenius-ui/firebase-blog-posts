@@ -11,14 +11,12 @@ const Auth = ({ modal, setModal }) => {
   const [createUser, setCreateUser] = useState(false);
   const [signReq, setSignReq] = useState("");
 
-  const hidden = modal ? "visible opacity-100" : "invisible opacity-0";
-
   return (
-    <Modal modal={modal} setModal={setModal} hidden={hidden}>
+    <Modal modal={modal} setModal={setModal}>
       <section
         className={`z-50 fixed top-0 bottom-0 left-0 md:left-[10rem]
         overflow-auto right-0 md:right-[10rem] bg-white shadows transition-all duration-500
-        ${hidden}`}>
+        ${modal ? "visible opacity-100" : "invisible opacity-0"}`}>
         <button
           onClick={() => setModal(false)}
           className="absolute top-8 right-8 text-2xl hover:opacity-50">
