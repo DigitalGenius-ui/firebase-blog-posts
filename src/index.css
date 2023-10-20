@@ -9,3 +9,7 @@
 .size {
   @apply w-[95%] md:w-[90%] mx-auto;
 }
+
+.shadows {
+  box-shadow: 0px 0px 3px 0.3px rgb(182, 182, 182);
+}
