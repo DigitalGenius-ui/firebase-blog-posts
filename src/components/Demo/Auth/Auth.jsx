@@ -7,10 +7,9 @@ import { AiOutlineMail } from "react-icons/ai";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 
-const Auth = () => {
+const Auth = ({ modal, setModal }) => {
   const [createUser, setCreateUser] = useState(false);
   const [signReq, setSignReq] = useState("");
-  const [modal, setModal] = useState(true);
 
   const hidden = modal ? "visible opacity-100" : "invisible opacity-0";
 
