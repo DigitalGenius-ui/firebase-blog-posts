@@ -6,10 +6,18 @@
   @apply m-0 p-0 box-border;
 }
 
+body {
+  @apply font-texts;
+}
+
 .size {
   @apply w-[95%] md:w-[90%] mx-auto;
 }
 
 .shadows {
   box-shadow: 0px 0px 3px 0.3px rgb(182, 182, 182);
+}
+
+.btn {
+  @apply px-3 p-2 text-sm font-medium;
 }
