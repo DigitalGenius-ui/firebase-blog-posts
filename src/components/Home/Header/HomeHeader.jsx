@@ -11,6 +11,7 @@ import UserModal from "./UserModal";
 
 const HomeHeader = () => {
   const [modal, setModal] = useState(false);
+  const [searchModal, setSearchModal] = useState(false);
   return (
     <header className="border-b border-gray-200">
       <div className="size h-[60px] flex items-center justify-between">
@@ -21,10 +22,15 @@ const HomeHeader = () => {
               <BsMedium />
             </span>
           </Link>
-          <Search />
+          <Search modal={searchModal} setModal={setSearchModal} />
         </div>
         {/* right side  */}
         <div className="flex items-center gap-3 sm:gap-7">
+          <span
+            onClick={() => setSearchModal(true)}
+            className="flex sm:hidden text-3xl text-gray-300 cursor-pointer">
+            <CiSearch />
+          </span>
           <Link
             to="/write"
             className="hidden md:flex items-center gap-1 text-gray-500">
