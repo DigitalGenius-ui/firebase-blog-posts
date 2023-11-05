@@ -8,12 +8,18 @@ import { Link } from "react-router-dom";
 import Search from "./Search";
 import Modal from "../../../utils/Modal";
 import UserModal from "./UserModal";
+import { Blog } from "../../../Context/Context";
+import Loading from "../../Loading/Loading";
 
 const HomeHeader = () => {
+  const { allUsers, userLoading, currentUser } = Blog();
   const [modal, setModal] = useState(false);
   const [searchModal, setSearchModal] = useState(false);
+
+  const getUserData = allUsers.find((user) => user.id === currentUser?.uid);
   return (
     <header className="border-b border-gray-200">
+      {userLoading && <Loading />}
       <div className="size h-[60px] flex items-center justify-between">
         {/* left side  */}
         <div className="flex items-center gap-3">
@@ -45,8 +51,8 @@ const HomeHeader = () => {
           <div className="flex items-center relative">
             <img
               onClick={() => setModal(true)}
-              className="w-[2.3rem] hr-[2.3rem] object-cover rounded-full cursor-pointer"
-              src="/profile.jpg"
+              className="w-[2.3rem] h-[2.3rem] object-cover rounded-full cursor-pointer"
+              src={getUserData?.userImg ? getUserData?.userImg : "/profile.jpg"}
               alt="profile-img"
             />
             <span className="text-gray-500 cursor-pointer">
@@ -57,7 +63,7 @@ const HomeHeader = () => {
                 className={`${
                   modal ? "visible opacity-100%" : "invisible opacity-0"
                 } transition-all duration-100`}>
-                <UserModal />
+                <UserModal setModal={setModal} />
               </div>
             </Modal>
           </div>
