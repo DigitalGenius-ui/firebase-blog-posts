@@ -140,7 +140,7 @@ const Preview = ({ setPublish, description, title }) => {
             <button
               onClick={handleSubmit}
               className="btn !bg-green-800 !w-fit !text-white !rounded-full">
-              {loading ? "Submitting" : "Publish Now"}
+              {loading ? "Submitting..." : "Publish Now"}
             </button>
           </div>
         </div>

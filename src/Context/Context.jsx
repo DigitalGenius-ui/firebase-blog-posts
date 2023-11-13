@@ -29,6 +29,7 @@ const Context = ({ children }) => {
     return () => unsubscribe();
   }, [currentUser]);
 
+  // get users
   useEffect(() => {
     const getUsers = () => {
       const postRef = query(collection(db, "users"));
@@ -43,6 +44,23 @@ const Context = ({ children }) => {
       });
     };
     getUsers();
+  }, []);
+
+  // get users
+  useEffect(() => {
+    const getAllPosts = () => {
+      const postRef = query(collection(db, "posts"));
+      onSnapshot(postRef, (snapshot) => {
+        setAllUsers(
+          snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }))
+        );
+      });
+      setUserLoading(false);
+    };
+    getAllPosts();
   }, []);
 
   return (
