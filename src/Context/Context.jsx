@@ -46,23 +46,6 @@ const Context = ({ children }) => {
     getUsers();
   }, []);
 
-  // get users
-  useEffect(() => {
-    const getAllPosts = () => {
-      const postRef = query(collection(db, "posts"));
-      onSnapshot(postRef, (snapshot) => {
-        setAllUsers(
-          snapshot.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-          }))
-        );
-      });
-      setUserLoading(false);
-    };
-    getAllPosts();
-  }, []);
-
   return (
     <BlogContext.Provider
       value={{

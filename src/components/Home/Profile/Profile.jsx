@@ -32,7 +32,6 @@ const Profile = () => {
   const [editModal, setEditModal] = useState(false);
 
   const getUserData = allUsers.find((user) => user.id === userId);
-
   return (
     <section className="size flex gap-[4rem] relative">
       {/* users activities  */}
