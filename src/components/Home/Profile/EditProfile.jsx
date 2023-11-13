@@ -123,8 +123,8 @@ const EditProfile = ({ editModal, setEditModal, getUserData }) => {
             maxLength={50}
           />
           <p className="text-sm text-gray-600 pt-2">
-            Appears on your Profile page, as your byline, and in your
-            responses.10/50
+            Appears on your Profile page, as your byline, and in your responses.
+            {form.username.length}/50
           </p>
           <section className="pt-[1rem] text-sm">
             <label className="pb-3 block" htmlFor="">
@@ -139,13 +139,16 @@ const EditProfile = ({ editModal, setEditModal, getUserData }) => {
               maxLength={160}
             />
             <p className="text-sm text-gray-600 pt-2">
-              Appears on your Profile and next to your stories. 42/160
+              Appears on your Profile and next to your stories.{" "}
+              {form.bio.length}/160
             </p>
           </section>
         </section>
         {/* foot  */}
         <div className="flex items-center justify-end gap-4 pt-[2rem]">
-          <button className={btn}>Cancel</button>
+          <button onClick={() => setEditModal(false)} className={btn}>
+            Cancel
+          </button>
           <button
             onClick={saveForm}
             className={`${btn} bg-green-800 text-white`}>
