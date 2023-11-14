@@ -9,9 +9,10 @@ import { discoverActions } from "../../../data";
 import EditProfile from "./EditProfile";
 import { Blog } from "../../../Context/Context";
 import { useParams } from "react-router-dom";
+import useSingleFetch from "../../hooks/useSingleFetch";
 
 const Profile = () => {
-  const { allUsers } = Blog();
+  const { allUsers, currentUser } = Blog();
   const { userId } = useParams();
   const activities = [
     {
@@ -32,6 +33,11 @@ const Profile = () => {
   const [editModal, setEditModal] = useState(false);
 
   const getUserData = allUsers.find((user) => user.id === userId);
+
+  const { data: follows } = useSingleFetch("users", userId, "follows");
+  const { data: followers } = useSingleFetch("users", userId, "followers");
+
+  console.log(followers, follows);
   return (
     <section className="size flex gap-[4rem] relative">
       {/* users activities  */}
@@ -40,8 +46,12 @@ const Profile = () => {
           <h2 className="text-3xl sm:text-5xl font-bold capitalize">
             {getUserData?.username}
           </h2>
-          <p className="text-gray-500 text-xs sm:text-sm">Followers(2)</p>
-          <p className="text-gray-500 text-xs sm:text-sm">Followings(2)</p>
+          <p className="text-gray-500 text-xs sm:text-sm">
+            Followers({followers.length})
+          </p>
+          <p className="text-gray-500 text-xs sm:text-sm">
+            Followings({follows.length})
+          </p>
         </div>
         <div className="flex items-center gap-5 mt-[1rem] border-b border-gray-300 mb-[3rem]">
           {activities.map((item, i) => (
@@ -98,11 +108,13 @@ const Profile = () => {
             <p className="text-gray-500 first-letter:uppercase text-sm">
               I am a content creator in Youtube channel.
             </p>
-            <button
-              onClick={() => setEditModal(true)}
-              className="text-green-700 pt-6 text-sm w-fit">
-              Edit Profile
-            </button>
+            {currentUser?.uid === getUserData?.userId && (
+              <button
+                onClick={() => setEditModal(true)}
+                className="text-green-700 pt-6 text-sm w-fit">
+                Edit Profile
+              </button>
+            )}
             {/* nav  */}
             <div className="flex-[1] flex items-center flex-wrap gap-3 pt-8">
               {discoverActions.map((item) => (

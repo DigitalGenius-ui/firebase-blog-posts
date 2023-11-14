@@ -9,14 +9,10 @@ import useSingleFetch from "../../../hooks/useSingleFetch";
 const SavedPost = ({ post }) => {
   const [isSaved, setIsSaved] = useState(false);
   const { currentUser } = Blog();
-  const { data, loading } = useSingleFetch(
-    "users",
-    currentUser?.uid,
-    "savePost"
-  );
+  const { data, loading } = useSingleFetch("users", post?.userId, "savePost");
 
   useEffect(() => {
-    setIsSaved(data && data.find((item) => item.id === post.id));
+    setIsSaved(data && data?.find((item) => item.id === post.id)) !== -1;
   }, [data, post?.id]);
 
   const handleSave = async () => {
@@ -40,10 +36,12 @@ const SavedPost = ({ post }) => {
           toast.success("Post has been Saved");
         }
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
   return (
-    <>
+    <div>
       <button onClick={handleSave} className="hover:opacity-60">
         <CiSaveDown2
           className={`text-2xl pointer-event-none
@@ -51,7 +49,7 @@ const SavedPost = ({ post }) => {
         `}
         />
       </button>
-    </>
+    </div>
   );
 };
 

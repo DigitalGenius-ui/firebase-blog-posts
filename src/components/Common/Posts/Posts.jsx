@@ -10,7 +10,7 @@ const Posts = () => {
       {loading ? (
         <Loading />
       ) : (
-        data.map((post, i) => <PostsCard post={post} key={i} />)
+        data?.map((post, i) => <PostsCard post={post} key={i} />)
       )}
     </section>
   );
