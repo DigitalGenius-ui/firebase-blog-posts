@@ -17,6 +17,7 @@
     "react-icons": "^4.11.0",
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.17.0",
+    "react-share": "^5.0.2",
     "react-tagsinput": "^3.20.3",
     "react-toastify": "^9.1.3"
   },

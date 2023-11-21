@@ -6,6 +6,7 @@ import SavedPost from "./Actions/SavedPost";
 import { Blog } from "../../../Context/Context";
 import Loading from "../../Loading/Loading";
 import Actions from "./Actions/Actions";
+import { useNavigate } from "react-router-dom";
 
 const PostsCard = ({ post }) => {
   const { title, desc, created, postImg, id: postId, userId } = post;
@@ -13,9 +14,13 @@ const PostsCard = ({ post }) => {
   const { data, loading } = useFetch("users");
   const getUserData = data && data?.find((user) => user?.id === userId);
 
+  const navigate = useNavigate();
+
   return (
     <section>
-      <div className="flex flex-col sm:flex-row gap-4 cursor-pointer">
+      <div
+        onClick={() => navigate(`/post/${postId}`)}
+        className="flex flex-col sm:flex-row gap-4 cursor-pointer">
         {loading && <Loading />}
         <div className="flex-[2.5]">
           <p className="pb-2 font-semibold capitalize">
@@ -39,7 +44,7 @@ const PostsCard = ({ post }) => {
           {moment(created).format("MMM DD")}
         </p>
         <div className="flex items-center gap-3">
-          <SavedPost post={post} getUserData={getUserData} />
+          <SavedPost post={post} />
           {currentUser?.uid === userId && <Actions post={post} />}
         </div>
       </div>

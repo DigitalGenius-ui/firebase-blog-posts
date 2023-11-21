@@ -17,8 +17,8 @@ const HomeHeader = () => {
   const [searchModal, setSearchModal] = useState(false);
 
   const { pathname } = useLocation();
+  const getUserData = allUsers?.find((user) => user.id === currentUser?.uid);
 
-  const getUserData = allUsers.find((user) => user.id === currentUser?.uid);
   return (
     <header className="border-b border-gray-200">
       {userLoading && <Loading />}
@@ -62,7 +62,7 @@ const HomeHeader = () => {
             <img
               onClick={() => setModal(true)}
               className="w-[2.3rem] h-[2.3rem] object-cover rounded-full cursor-pointer"
-              src={getUserData?.userImg ? getUserData?.userImg : "/profile.jpg"}
+              src={getUserData?.userImg || "/profile.jpg"}
               alt="profile-img"
             />
             <span className="text-gray-500 cursor-pointer">
