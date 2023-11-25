@@ -13,6 +13,8 @@ const Context = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [userLoading, setUserLoading] = useState(true);
   const [allUsers, setAllUsers] = useState([]);
+  const [showComment, setShowComment] = useState(false);
+  const [commentLength, setCommentLength] = useState(0);
 
   const [publish, setPublish] = useState(false);
 
@@ -55,6 +57,10 @@ const Context = ({ children }) => {
         userLoading,
         publish,
         setPublish,
+        showComment,
+        setShowComment,
+        commentLength,
+        setCommentLength,
       }}>
       {loading ? <Loading /> : children}
     </BlogContext.Provider>
