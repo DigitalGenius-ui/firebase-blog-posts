@@ -36,21 +36,13 @@ const SharePost = () => {
       <DropDown showDrop={showDrop} setShowDrop={setShowDrop} size="w-[12rem]">
         <Button click={copyLink} title="Copy Link" icon={<BiLink />} />
         <TwitterShareButton url={path}>
-          <Button click="" title="Share On Twitter" icon={<BiLogoTwitter />} />
+          <Button title="Share On Twitter" icon={<BiLogoTwitter />} />
         </TwitterShareButton>
         <FacebookShareButton url={path}>
-          <Button
-            click=""
-            title="Share On Facebook"
-            icon={<BiLogoFacebookCircle />}
-          />
+          <Button title="Share On Facebook" icon={<BiLogoFacebookCircle />} />
         </FacebookShareButton>
         <LinkedinShareButton url={path}>
-          <Button
-            click=""
-            title="Share On LinkedIn"
-            icon={<BiLogoLinkedinSquare />}
-          />
+          <Button title="Share On LinkedIn" icon={<BiLogoLinkedinSquare />} />
         </LinkedinShareButton>
       </DropDown>
     </div>
