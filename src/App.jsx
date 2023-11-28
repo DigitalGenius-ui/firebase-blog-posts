@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import Profile from "./components/Home/Profile/Profile";
 import Write from "./components/Home/Write/Write";
 import SinglePost from "./components/Common/Posts/SinglePost";
+import EditPost from "./components/Common/Posts/EditPost";
 
 function App() {
   const { currentUser } = Blog();
@@ -21,6 +22,7 @@ function App() {
         <Route path="/profile/:userId" element={<Profile />} />
         <Route path="/write" element={<Write />} />
         <Route path="/post/:postId" element={<SinglePost />} />
+        <Route path="/editPost/:postId" element={<EditPost />} />
         <Route
           path="*"
           element={<Navigate to={!currentUser ? "/demo" : "/"} />}

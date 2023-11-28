@@ -4,20 +4,46 @@ import { CiSearch } from "react-icons/ci";
 import { LiaEditSolid } from "react-icons/lia";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Search from "./Search";
 import Modal from "../../../utils/Modal";
 import UserModal from "./UserModal";
 import { Blog } from "../../../Context/Context";
 import Loading from "../../Loading/Loading";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../../firebase/firebase";
+import { toast } from "react-toastify";
 
 const HomeHeader = () => {
-  const { allUsers, userLoading, currentUser, setPublish } = Blog();
+  const { allUsers, userLoading, currentUser, setPublish, title, description } =
+    Blog();
   const [modal, setModal] = useState(false);
   const [searchModal, setSearchModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { pathname } = useLocation();
   const getUserData = allUsers?.find((user) => user.id === currentUser?.uid);
+
+  const editPath = pathname.split("/")[1];
+  const postId = pathname.split("/")[2];
+
+  const navigate = useNavigate(null);
+
+  const handleEdit = async () => {
+    try {
+      setLoading(true);
+      const ref = doc(db, "posts", postId);
+      await updateDoc(ref, {
+        title,
+        desc: description,
+      });
+      navigate(`/post/${postId}`);
+      toast.success("Post has been updated");
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <header className="border-b border-gray-200">
@@ -44,6 +70,14 @@ const HomeHeader = () => {
               onClick={() => setPublish(true)}
               className="btn !bg-green-700 !py-1 !text-white !rounded-full">
               Publish
+            </button>
+          ) : editPath === "editPost" ? (
+            <button
+              onClick={handleEdit}
+              className={`btn !bg-green-700 !py-1 !text-white !rounded-full
+              ${loading ? "opacity-40" : ""}
+              `}>
+              {loading ? "Updating..." : "Save and Update"}
             </button>
           ) : (
             <Link
