@@ -1,4 +1,12 @@
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase/firebase";
 
@@ -6,22 +14,29 @@ const useFetch = (collectionName) => {
   const [data, setData] = useState("");
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const getUsers = () => {
+    const getDatas = async () => {
       const postRef = query(
         collection(db, collectionName),
         orderBy("created", "desc")
       );
-      onSnapshot(postRef, (snapshot) => {
-        setData(
-          snapshot.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-          }))
-        );
-        setLoading(false);
-      });
+      const snapshot = await getDocs(postRef);
+
+      const postData = await Promise.all(
+        snapshot.docs.map(async (docs) => {
+          const postItems = { ...docs.data(), id: docs.id };
+          const ref = doc(db, "users", postItems?.userId);
+          const getUser = await getDoc(ref);
+
+          if (getUser.exists()) {
+            const userData = getUser.data();
+            return { ...postItems, ...userData };
+          }
+        })
+      );
+      setData(postData);
+      setLoading(false);
     };
-    getUsers();
+    getDatas();
   }, [collectionName]);
   return {
     data,

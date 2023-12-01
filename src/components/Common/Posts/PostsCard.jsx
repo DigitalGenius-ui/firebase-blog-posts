@@ -1,5 +1,4 @@
 import React from "react";
-import useFetch from "../../hooks/useFetch";
 import { readTime } from "../../../utils/helper";
 import moment from "moment/moment";
 import SavedPost from "./Actions/SavedPost";
@@ -9,10 +8,8 @@ import Actions from "./Actions/Actions";
 import { useNavigate } from "react-router-dom";
 
 const PostsCard = ({ post }) => {
-  const { title, desc, created, postImg, id: postId, userId } = post;
+  const { title, desc, created, postImg, id: postId, userId, username } = post;
   const { currentUser } = Blog();
-  const { data, loading } = useFetch("users");
-  const getUserData = data && data?.find((user) => user?.id === userId);
 
   const navigate = useNavigate();
 
@@ -21,11 +18,8 @@ const PostsCard = ({ post }) => {
       <div
         onClick={() => navigate(`/post/${postId}`)}
         className="flex flex-col sm:flex-row gap-4 cursor-pointer">
-        {loading && <Loading />}
         <div className="flex-[2.5]">
-          <p className="pb-2 font-semibold capitalize">
-            {getUserData?.username}
-          </p>
+          <p className="pb-2 font-semibold capitalize">{username}</p>
           <h2 className="text-xl font-bold line-clamp-2 leading-6 capitalize">
             {title}
           </h2>
