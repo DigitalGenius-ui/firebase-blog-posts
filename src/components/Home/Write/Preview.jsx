@@ -50,13 +50,14 @@ const Preview = ({ setPublish, description, title }) => {
       }
 
       const collections = collection(db, "posts");
-      let imageUrl;
+
+      let url;
 
       if (imageUrl) {
         const storageRef = ref(storage, `image/${preview.photo.name}`);
         await uploadBytes(storageRef, preview?.photo);
 
-        imageUrl = await getDownloadURL(storageRef);
+        url = await getDownloadURL(storageRef);
       }
 
       await addDoc(collections, {
@@ -64,7 +65,7 @@ const Preview = ({ setPublish, description, title }) => {
         title: preview.title,
         desc,
         tags,
-        postImg: imageUrl || "",
+        postImg: url || "",
         created: Date.now(),
         pageViews: 0,
       });

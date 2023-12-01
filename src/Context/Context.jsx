@@ -53,8 +53,6 @@ const Context = ({ children }) => {
     getUsers();
   }, []);
 
-  const { data: postData, loading: postLoading } = useFetch("posts");
-
   return (
     <BlogContext.Provider
       value={{
@@ -74,8 +72,6 @@ const Context = ({ children }) => {
         setTitle,
         description,
         setDescription,
-        postData,
-        loading: postLoading,
       }}>
       {loading ? <Loading /> : children}
     </BlogContext.Provider>

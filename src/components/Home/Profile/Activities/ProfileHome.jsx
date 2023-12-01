@@ -1,10 +1,10 @@
 import React from "react";
 import Loading from "../../../Loading/Loading";
 import PostsCard from "../../../Common/Posts/PostsCard";
-import { Blog } from "../../../../Context/Context";
+import useFetch from "../../../hooks/useFetch";
 
 const ProfileHome = ({ getUserData }) => {
-  const { postData, postLoading } = Blog();
+  const { data: postData, loading: postLoading } = useFetch("posts");
   const userPost =
     postData &&
     postData?.filter((post) => post?.userId === getUserData?.userId);

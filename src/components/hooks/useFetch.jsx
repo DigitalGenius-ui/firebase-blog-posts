@@ -19,25 +19,29 @@ const useFetch = (collectionName) => {
         collection(db, collectionName),
         orderBy("created", "desc")
       );
-      const snapshot = await getDocs(postRef);
 
-      const postData = await Promise.all(
-        snapshot.docs.map(async (docs) => {
-          const postItems = { ...docs.data(), id: docs.id };
-          const ref = doc(db, "users", postItems?.userId);
-          const getUser = await getDoc(ref);
+      const unsubscribe = onSnapshot(postRef, async (snapshot) => {
+        const postData = await Promise.all(
+          snapshot.docs.map(async (docs) => {
+            const postItems = { ...docs.data(), id: docs.id };
+            const userRef = doc(db, "users", postItems?.userId);
+            const getUser = await getDoc(userRef);
 
-          if (getUser.exists()) {
-            const userData = getUser.data();
-            return { ...postItems, ...userData };
-          }
-        })
-      );
-      setData(postData);
-      setLoading(false);
+            if (getUser.exists()) {
+              const { created, ...rest } = getUser.data();
+              return { ...postItems, ...rest };
+            }
+          })
+        );
+        setData(postData);
+        setLoading(false);
+      });
+
+      return () => unsubscribe();
     };
+
     getDatas();
-  }, [collectionName, data]);
+  }, [collectionName]);
   return {
     data,
     loading,
