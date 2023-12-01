@@ -3,7 +3,6 @@ import { readTime } from "../../../utils/helper";
 import moment from "moment/moment";
 import SavedPost from "./Actions/SavedPost";
 import { Blog } from "../../../Context/Context";
-import Loading from "../../Loading/Loading";
 import Actions from "./Actions/Actions";
 import { useNavigate } from "react-router-dom";
 
@@ -28,9 +27,15 @@ const PostsCard = ({ post }) => {
             dangerouslySetInnerHTML={{ __html: desc }}
           />
         </div>
-        <div className="flex-[1]">
-          <img src={postImg} alt="postImg" className="w-[53rem]" />
-        </div>
+        {postImg && (
+          <div className="flex-[1]">
+            <img
+              src={postImg}
+              alt="postImg"
+              className="w-[53rem] h-[8rem] object-cover"
+            />
+          </div>
+        )}
       </div>
       <div className="flex items-center justify-between w-full md:w-[70%] mt-[2rem] md:mt-0">
         <p className="text-xs text-gray-600">
@@ -39,7 +44,9 @@ const PostsCard = ({ post }) => {
         </p>
         <div className="flex items-center gap-3">
           <SavedPost post={post} />
-          {currentUser?.uid === userId && <Actions post={post} />}
+          {post && currentUser?.uid === userId && (
+            <Actions postId={postId} title={title} desc={desc} />
+          )}
         </div>
       </div>
     </section>

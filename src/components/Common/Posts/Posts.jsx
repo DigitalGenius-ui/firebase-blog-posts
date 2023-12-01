@@ -1,5 +1,4 @@
 import React from "react";
-import useFetch from "../../hooks/useFetch";
 import Loading from "../../Loading/Loading";
 import PostsCard from "./PostsCard";
 import { Blog } from "../../../Context/Context";

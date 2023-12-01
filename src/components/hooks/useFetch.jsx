@@ -37,7 +37,7 @@ const useFetch = (collectionName) => {
       setLoading(false);
     };
     getDatas();
-  }, [collectionName]);
+  }, [collectionName, data]);
   return {
     data,
     loading,

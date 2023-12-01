@@ -37,6 +37,7 @@ const Actions = ({ postId, title, desc }) => {
       await deleteDoc(likeRef);
       await deleteDoc(commentRef);
       await deleteDoc(savedPostRef);
+
       toast.success("post has been removed");
       navigate("/");
     } catch (error) {
