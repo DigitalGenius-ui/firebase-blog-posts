@@ -52,7 +52,6 @@ const Preview = ({ setPublish, description, title }) => {
       const collections = collection(db, "posts");
 
       let url;
-
       if (imageUrl) {
         const storageRef = ref(storage, `image/${preview.photo.name}`);
         await uploadBytes(storageRef, preview?.photo);
