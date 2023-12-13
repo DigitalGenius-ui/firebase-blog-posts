@@ -9,7 +9,7 @@ import { formatNum } from "../../../../utils/helper";
 
 const Like = ({ postId }) => {
   const [isLiked, setIsLiked] = useState(false);
-  const { currentUser } = Blog();
+  const { currentUser, setAuthModel } = Blog();
 
   const { data } = useSingleFetch("posts", postId, "likes");
 
@@ -30,6 +30,8 @@ const Like = ({ postId }) => {
             userId: currentUser?.uid,
           });
         }
+      } else {
+        setAuthModel(true);
       }
     } catch (error) {
       toast.error(error.message);

@@ -14,9 +14,9 @@ const ProfileLists = ({ getUserData }) => {
   );
   return (
     <div>
-      {currentUser?.uid === getUserData?.userId ? (
+      {currentUser && currentUser?.uid === getUserData?.userId ? (
         <div className="flex flex-col gap-[2rem] mb-[2rem]">
-          {data.length === 0 && (
+          {data && data.length === 0 && (
             <p className="text-gray-500">
               <span className="capitalize mr-1">{getUserData?.username}</span>{" "}
               has no saved post
@@ -25,7 +25,7 @@ const ProfileLists = ({ getUserData }) => {
           {loading ? (
             <Loading />
           ) : (
-            data?.map((post, i) => <PostsCard post={post} key={i} />)
+            data && data?.map((post, i) => <PostsCard post={post} key={i} />)
           )}
         </div>
       ) : (

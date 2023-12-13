@@ -11,7 +11,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../../firebase/firebase";
 import { toast } from "react-toastify";
 
-const UserModal = (setModal) => {
+const UserModal = ({ setModal }) => {
   const { currentUser } = Blog();
   const userModal = [
     {
