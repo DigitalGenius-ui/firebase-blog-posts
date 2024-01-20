@@ -4,19 +4,21 @@
 <img src="./public/mediumBanner.png" alt="banner-image"/>
 
 ## Demo
-[Tutorial Video Link](https://youtu.be/_jLxmkVkDOI)
+[Tutorial Video Link](https://youtu.be/HySH1Easuf4)
 
-## Methodes
+## Features
 
-- Fetch
-- Axios
-- React Query
-- RTK Qury
+- CRUD Post
+- User Profile
+- Follow Unfollow User
+- CRUD Comment
+- Authentication
+- Search Post
+- Filter Post
 
 ## Description
 
-In this repo you will learn 4 ways to fetch data in your react application at an easiest way. You will learn (GET, POST, DELTE, PUT) Mthodes.
-You can watch a youtube tutorial with the link I provided above.
+A dynamic platform inspired by Medium! This innovative clone empowers users to seamlessly share, engage, and explore content. With the ability to create and share posts, follow other users, and leave comments, it fosters a vibrant community. The search and filtering functionalities enhance user experience, enabling efficient content discovery. Designed with a user-centric approach, this Medium-inspired project provides an intuitive and interactive space for content creators and consumers alike. Check out the repository on GitHub to explore the codebase and contribute to the evolution of this exciting platform! Your feedback and collaboration are highly valued.
 
 Developed By Milad Amiri 2024.
 Watch more videos from me [Milad Tech](https://www.youtube.com/@miladtech2844)
@@ -24,7 +26,5 @@ Watch more videos from me [Milad Tech](https://www.youtube.com/@miladtech2844)
 ## Technologies 
 
 - [React JS](https://reactjs.org/docs/getting-started.html)
-- [Axios](https://axios-http.com/docs/intro)
-- [React query](https://tanstack.com/query/latest/docs/react/overview)
-- [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
-- [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
+- [Firebase](https://firebase.google.com/?gad_source=1&gclid=Cj0KCQiA-62tBhDSARIsAO7twbZfIBRLkw-1Uz_ygeLOlRmiqz8ZkAsPf0ETsiUBLuYPhWbq4AKo6YcaApWAEALw_wcB&gclsrc=aw.ds)
+- [Tailwind css](https://tailwindcss.com/)
