@@ -39,6 +39,7 @@ const Actions = ({ postId, title, desc }) => {
       await deleteDoc(savedPostRef);
 
       toast.success("post has been removed");
+      setShowDrop(false);
       navigate("/");
     } catch (error) {
       toast.success(error.message);

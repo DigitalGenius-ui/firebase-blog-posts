@@ -37,14 +37,14 @@ const DemoHeader = () => {
           </div>
           <div className="relative">
             <button
-              onClick={() => setModal(true)}
+              onClick={() => setAuthModel(true)}
               className="hidden text-sm sm:flex items-center gap-5">
               Sign In
             </button>
             <Auth modal={authModel} setModal={setAuthModel} />
           </div>
           <button
-            onClick={() => setModal(true)}
+            onClick={() => setAuthModel(true)}
             className={`text-white rounded-full px-3 p-2 text-sm font-medium
             ${isActive ? "bg-green-700" : "bg-black"}
             `}>
