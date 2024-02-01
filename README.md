@@ -6,7 +6,7 @@
 ## Demo
 [Tutorial Video Link](https://youtu.be/HySH1Easuf4)
 
-[Live Link](https://medium-blog12.netlify.app/)
+[Live Link](https://medium-blog1.netlify.app/)
 
 ## Features
 
